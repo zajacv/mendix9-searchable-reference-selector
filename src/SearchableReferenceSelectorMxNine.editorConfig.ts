@@ -109,6 +109,9 @@ export function getProperties(
 
     if (_values.isClearable === false) {
         hidePropertiesIn(defaultProperties, _values, ["clearIcon"]);
+        if (_values.selectionType !== "referenceSet") {
+            hidePropertiesIn(defaultProperties, _values, ["onClear"]);
+        }
     }
 
     if (_values.showSelectAll === false) {

@@ -55,7 +55,8 @@ const handleClearAll = (
     onSelectHandler: (selectedOption: IOption | undefined) => void,
     searchInput: HTMLInputElement | null,
     // showMenu: boolean,
-    setShowMenu: (newShowMenu: boolean) => void
+    setShowMenu: (newShowMenu: boolean) => void,
+    onClear: (() => void) | undefined
 ): void => {
     event.stopPropagation();
     if (focusedObjIndex !== -1) {
@@ -68,6 +69,9 @@ const handleClearAll = (
     }
     setTimeout(() => setShowMenu(true), 100);
     focusSearchInput(searchInput, 300);
+    if (onClear) {
+        onClear();
+    }
 };
 
 const focusSearchInput = (input: HTMLInputElement | null, delay: number): void => {
@@ -154,6 +158,7 @@ interface SelectorProps {
     onBadgeClick: ((selectedBadge: IOption) => void) | undefined; // selectionType = ReferenceSet
     srsRef?: RefObject<HTMLDivElement>;
     onLeave: () => void;
+    onClear: () => void; // isClearable or selectionType = ReferenceSet
     isLoading: boolean;
     loadingText: string;
     allowLoadingSelect: boolean;
@@ -174,6 +179,7 @@ const Selector = ({
     noResultsText,
     onBadgeClick,
     onSelect,
+    onClear,
     onSelectMoreOptions,
     options,
     optionsStyle,
@@ -297,6 +303,8 @@ const Selector = ({
                         setShowMenu(!showMenu);
                         if (showMenu === false) {
                             focusSearchInput(searchInput, 300);
+                        } else {
+                            onLeave();
                         }
                     }
                 }}
@@ -360,6 +368,7 @@ const Selector = ({
                             referenceSetStyle={referenceSetStyle}
                             clearIcon={clearIcon}
                             onBadgeClick={onBadgeClick}
+                            onClear={onClear}
                         />
                     )}
                     {!isReadOnly && (
@@ -391,7 +400,8 @@ const Selector = ({
                                             onSelectHandler,
                                             searchInput,
                                             // showMenu,
-                                            setShowMenu
+                                            setShowMenu,
+                                            onClear
                                         );
                                     }}
                                     title={"Clear"}

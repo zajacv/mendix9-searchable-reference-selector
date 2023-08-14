@@ -123,6 +123,7 @@ export default function SearchableReferenceSelector({
     onBadgeClick,
     onChange,
     onLeave,
+    onClear,
     optionCustomContent,
     selectAllIcon,
     selectableCondition,
@@ -443,6 +444,11 @@ export default function SearchableReferenceSelector({
                 onLeave={() => {
                     if (onLeave) {
                         callMxAction(onLeave, false);
+                    }
+                }}
+                onClear={() => {
+                    if (onClear) {
+                        callMxAction(onClear, false);
                     }
                 }}
                 srsRef={srsRef}

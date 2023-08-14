@@ -8,6 +8,7 @@ interface BadgeProps {
     onRemoveAssociation: (selectedOption: IOption) => void;
     clearIcon: WebIcon | undefined;
     onBadgeClick: ((selectedBadge: IOption) => void) | undefined;
+    onClear: (() => void) | undefined;
     isClearable: boolean;
     isReadOnly: boolean;
 }
@@ -16,6 +17,7 @@ const Badge = ({
     onRemoveAssociation,
     clearIcon,
     onBadgeClick,
+    onClear,
     option,
     isClearable,
     isReadOnly
@@ -28,6 +30,9 @@ const Badge = ({
                     onClick={(event: MouseEvent<HTMLDivElement>) => {
                         event.stopPropagation();
                         onRemoveAssociation(option);
+                        if (onClear) {
+                            onClear();
+                        }
                     }}
                     title="Remove"
                     mxIconOverride={clearIcon}

@@ -190,6 +190,13 @@
                     <caption>On Leave</caption>
                     <description>Action performed when the user closes the popup, clicks away, or tabs away</description>
                 </property>
+                <property key="onClear" type="action">
+                    <caption>On Clear</caption>
+                    <description>
+                        Action performed when the user clicks on main clear icon or a clear icon of a reference set
+                        badge
+                    </description>
+                </property>
                 <property key="onBadgeClick" type="action" dataSource="selectableObjects">
                     <caption>On Badge Click</caption>
                     <description>Action performed when the user clicks on a reference set badge</description>

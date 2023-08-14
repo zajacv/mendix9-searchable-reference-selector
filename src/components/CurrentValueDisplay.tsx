@@ -14,6 +14,7 @@ type CurrentValueDisplayProps = {
     referenceSetStyle: ReferenceSetStyleEnum;
     clearIcon: WebIcon | undefined;
     onBadgeClick: ((selectedBadge: IOption) => void) | undefined;
+    onClear: (() => void) | undefined;
 };
 
 export default function CurrentValueDisplay({
@@ -23,6 +24,7 @@ export default function CurrentValueDisplay({
     onRemove,
     clearIcon,
     onBadgeClick,
+    onClear,
     isClearable,
     isReadOnly
 }: CurrentValueDisplayProps): ReactElement {
@@ -43,6 +45,7 @@ export default function CurrentValueDisplay({
                                                 onRemoveAssociation={() => onRemove(option)}
                                                 clearIcon={clearIcon}
                                                 onBadgeClick={onBadgeClick}
+                                                onClear={onClear}
                                                 option={option}
                                             />
                                         ))}
@@ -58,6 +61,7 @@ export default function CurrentValueDisplay({
                                                 onRemoveAssociation={() => onRemove(option)}
                                                 clearIcon={clearIcon}
                                                 onBadgeClick={onBadgeClick}
+                                                onClear={onClear}
                                                 option={option}
                                             />
                                         ))}

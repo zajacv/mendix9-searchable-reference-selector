@@ -68,6 +68,7 @@ export interface SearchableReferenceSelectorMxNineContainerProps {
     enumAttribute: EditableValue<string>;
     onChange?: ActionValue;
     onLeave?: ActionValue;
+    onClear?: ActionValue;
     onBadgeClick?: ListActionValue;
     filterDelay: number;
     filterType: FilterTypeEnum;
@@ -109,6 +110,7 @@ export interface SearchableReferenceSelectorMxNinePreviewProps {
     enumAttribute: string;
     onChange: {} | null;
     onLeave: {} | null;
+    onClear: {} | null;
     onBadgeClick: {} | null;
     filterDelay: number | null;
     filterType: FilterTypeEnum;

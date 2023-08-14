@@ -129,6 +129,8 @@ export function preview({
                 // eslint-disable-next-line @typescript-eslint/no-empty-function
                 onSelect={() => {}}
                 // eslint-disable-next-line @typescript-eslint/no-empty-function
+                onClear={() => {}}
+                // eslint-disable-next-line @typescript-eslint/no-empty-function
                 onSelectMoreOptions={() => {}}
                 // eslint-disable-next-line @typescript-eslint/no-empty-function
                 onBadgeClick={() => {}}
