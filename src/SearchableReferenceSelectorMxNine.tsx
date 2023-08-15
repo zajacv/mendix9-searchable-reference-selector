@@ -32,6 +32,7 @@ const handleSelect = (
     isReadOnly: boolean,
     selectedOption: IOption | IOption[] | undefined,
     onChange: ActionValue | undefined,
+    setChanged: () => void,
     attribute: EditableValue<string> | ReferenceValue | ReferenceSetValue
 ): void => {
     if (!isReadOnly) {
@@ -42,6 +43,7 @@ const handleSelect = (
         } else {
             attribute.setValue(undefined);
         }
+        setChanged();
         callMxAction(onChange, false);
     }
 };
@@ -122,6 +124,7 @@ export default function SearchableReferenceSelector({
     dropdownIcon,
     onBadgeClick,
     onChange,
+    onChangeBehavior,
     onLeave,
     onClear,
     optionCustomContent,
@@ -144,6 +147,7 @@ export default function SearchableReferenceSelector({
     const [mxFilter, setMxFilter] = useState<string>("");
     const [itemsLimit, setItemsLimit] = useState<number | undefined>(defaultPageSize);
     const [options, setOptions] = useState<IOption[]>([]);
+    const [changePending, setChangePending] = useState<boolean>(false);
     const [currentValue, setCurrentValue] = useState<IOption | IOption[] | undefined>();
     const srsRef = useRef<HTMLDivElement>(null);
 
@@ -433,7 +437,8 @@ export default function SearchableReferenceSelector({
                     handleSelect(
                         isReadOnly,
                         selectedOption,
-                        onChange,
+                        onChangeBehavior === "immediately" ? onChange : undefined,
+                        () => setChangePending(true),
                         selectionType === "enumeration"
                             ? enumAttribute
                             : selectionType === "reference"
@@ -442,11 +447,19 @@ export default function SearchableReferenceSelector({
                     );
                 }}
                 onLeave={() => {
+                    if (onChangeBehavior === "menuClose" && changePending) {
+                        setChangePending(false);
+                        callMxAction(onChange, false);
+                    }
                     if (onLeave) {
                         callMxAction(onLeave, false);
                     }
                 }}
                 onClear={() => {
+                    if (onChangeBehavior === "menuClose") {
+                        setChangePending(false);
+                        callMxAction(onChange, false);
+                    }
                     if (onClear) {
                         callMxAction(onClear, false);
                     }

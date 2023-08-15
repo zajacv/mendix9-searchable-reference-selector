@@ -4,19 +4,7 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType } from "react";
-import {
-    ActionValue,
-    DynamicValue,
-    EditableValue,
-    ListValue,
-    ListActionValue,
-    ListAttributeValue,
-    ListExpressionValue,
-    ListWidgetValue,
-    ReferenceValue,
-    ReferenceSetValue,
-    WebIcon
-} from "mendix";
+import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, ReferenceValue, ReferenceSetValue, WebIcon } from "mendix";
 import { Big } from "big.js";
 
 export type SelectStyleEnum = "dropdown" | "list";
@@ -30,6 +18,8 @@ export type OptionsStyleSetEnum = "cell" | "checkbox";
 export type ReferenceSetStyleEnum = "badges" | "commas";
 
 export type SelectionTypeEnum = "enumeration" | "reference" | "referenceSet";
+
+export type OnChangeBehaviorEnum = "menuClose" | "immediately";
 
 export type FilterTypeEnum = "auto" | "manual";
 
@@ -67,6 +57,7 @@ export interface SearchableReferenceSelectorMxNineContainerProps {
     selectableCondition: ListExpressionValue<boolean>;
     enumAttribute: EditableValue<string>;
     onChange?: ActionValue;
+    onChangeBehavior: OnChangeBehaviorEnum;
     onLeave?: ActionValue;
     onClear?: ActionValue;
     onBadgeClick?: ListActionValue;
@@ -98,9 +89,9 @@ export interface SearchableReferenceSelectorMxNinePreviewProps {
     referenceSetStyle: ReferenceSetStyleEnum;
     maxReferenceDisplay: number | null;
     maxMenuHeight: string;
-    clearIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    dropdownIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    selectAllIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    clearIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    dropdownIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    selectAllIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     selectionType: SelectionTypeEnum;
     selectableObjects: {} | { type: string } | null;
     reference: string;
@@ -109,6 +100,7 @@ export interface SearchableReferenceSelectorMxNinePreviewProps {
     selectableCondition: string;
     enumAttribute: string;
     onChange: {} | null;
+    onChangeBehavior: OnChangeBehaviorEnum;
     onLeave: {} | null;
     onClear: {} | null;
     onBadgeClick: {} | null;

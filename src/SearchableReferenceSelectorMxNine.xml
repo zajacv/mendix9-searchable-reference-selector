@@ -186,6 +186,14 @@
                     <caption>On Change</caption>
                     <description></description>
                 </property>
+                <property key="onChangeBehavior" type="enumeration" defaultValue="menuClose">
+                    <caption>Apply changes</caption>
+                    <description>When to call onChange event</description>
+                    <enumerationValues>
+                        <enumerationValue key="menuClose">When dropdown menu is closed</enumerationValue>
+                        <enumerationValue key="immediately">Immediately</enumerationValue>
+                    </enumerationValues>
+                </property>
                 <property key="onLeave" type="action">
                     <caption>On Leave</caption>
                     <description>Action performed when the user closes the popup, clicks away, or tabs away</description>
